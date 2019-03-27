@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ExcelReportGenerator
 {
     class TestObject
     {
+        [Display(Name = "Név", Description = "A termék neve")]
         public string Name { get; set; }
+        [Display(Name = "Kategória", Description ="A termék kategóriája")]
         public string Category { get; set; }
+        [Display(Name = "Mennyiség", Description = "A rendelkezésre álló mennyiség")]
+        [DisplayFormat(DataFormatString = "0.00")]
         public int Amount { get; set; }
 
         public TestObject(string Name, string Category, int Amount)

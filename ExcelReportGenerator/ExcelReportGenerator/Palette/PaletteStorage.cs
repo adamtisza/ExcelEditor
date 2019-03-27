@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcelReportGenerator
 {
 
     enum ExcelColor
     {
-        Primary = 1,
-        Secondary = 2,
-        Succes = 3,
-        Danger = 4,
-        Warning = 5,
-        Info = 6
+        Primary,
+        Secondary,
+        Succes,
+        Danger,
+        Warning,
+        Info,
+        Transparent
     }
 
     class PaletteStorage
@@ -29,16 +26,21 @@ namespace ExcelReportGenerator
             {ExcelColor.Danger, new Palette(ColorFromRgb(255, 59, 59), ColorFromRgb(208, 0, 0), ColorFromRgb(255, 174, 174)) },
             {ExcelColor.Warning, new Palette(ColorFromRgb(255, 217, 102), ColorFromRgb(255, 192, 0), ColorFromRgb(255, 230, 153)) },
             {ExcelColor.Info, new Palette(ColorFromRgb(92, 214, 234), ColorFromRgb(23, 162, 184), ColorFromRgb(170, 233, 244)) },
+            {ExcelColor.Transparent, new Palette(Color.Transparent, Color.Transparent, Color.Transparent) }
         };
 
-
+        /// <summary>
+        /// Get palette defined by ExcelColor
+        /// </summary>
+        /// <param name="excelColor">Main color of the desired palette</param>
+        /// <returns>Defined palette</returns>
         public static Palette GetPalette(ExcelColor excelColor)
         {
             return PaletteColors[excelColor];
         }
 
 
-        //All used colors have an alpha of 255, no need to always call it explicitly
+        //Most used colors have an alpha of 255, no need to always call it explicitly
         private static Color ColorFromRgb(byte r, byte g, byte b)
         {
             return Color.FromArgb(255, r, g, b);
